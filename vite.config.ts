@@ -9,6 +9,7 @@ export default defineConfig({
             "apps/web/.vinxi/**",
             "apps/web/.tanstack/**",
             "apps/web/src/routeTree.gen.ts",
+            "apps/fumadocs/src/routeTree.gen.ts",
             "apps/native/.expo/**",
             "apps/native/dist/**",
             "apps/native/web-build/**",
@@ -23,6 +24,23 @@ export default defineConfig({
             typeAware: false,
             typeCheck: false,
         },
+        settings: {
+            react: {
+                version: "19.3.1",
+            },
+            tailwindcss: {
+                callees: ["clsx", "cva", "cn"],
+            },
+        },
+        overrides: [
+            {
+                files: ["apps/fumadocs/**"],
+                plugins: ["typescript", "react", "import"],
+                env: {
+                    builtin: true,
+                },
+            },
+        ],
     },
     fmt: {
         tabWidth: 4,
@@ -34,6 +52,7 @@ export default defineConfig({
             "apps/web/.vinxi/**",
             "apps/web/.tanstack/**",
             "apps/web/src/routeTree.gen.ts",
+            "apps/fumadocs/src/routeTree.gen.ts",
             "apps/native/.expo/**",
             "apps/native/dist/**",
             "apps/native/web-build/**",

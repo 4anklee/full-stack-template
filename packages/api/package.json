@@ -20,6 +20,6 @@
     },
     "devDependencies": {
         "@full-stack-template/config": "workspace:*",
-        "typescript": "^6.0.3"
+        "typescript": "catalog:"
     }
 }

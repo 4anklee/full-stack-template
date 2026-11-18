@@ -27,6 +27,6 @@
         "@full-stack-template/config": "workspace:*",
         "@types/bun": "catalog:",
         "tsdown": "^0.23.7",
-        "typescript": "^6.0.3"
+        "typescript": "catalog:"
     }
 }
