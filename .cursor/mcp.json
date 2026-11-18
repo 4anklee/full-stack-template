@@ -1,0 +1,24 @@
+{
+    "mcpServers": {
+        "context7": {
+            "command": "npx",
+            "args": ["-y", "@upstash/context7-mcp"]
+        },
+        "shadcn": {
+            "command": "npx",
+            "args": ["-y", "shadcn@latest", "mcp"]
+        },
+        "neon": {
+            "url": "https://mcp.neon.tech/mcp"
+        },
+        "better-auth": {
+            "url": "https://mcp.better-auth.com/mcp"
+        },
+        "expo-mcp": {
+            "url": "https://mcp.expo.dev/mcp"
+        },
+        "polar": {
+            "url": "https://mcp.polar.sh/mcp/polar-mcp"
+        }
+    }
+}

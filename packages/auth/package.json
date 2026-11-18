@@ -1,0 +1,27 @@
+{
+    "name": "@full-stack-template/auth",
+    "type": "module",
+    "exports": {
+        ".": "./src/index.ts",
+        "./*": "./src/*.ts"
+    },
+    "scripts": {
+        "build": "tsc -b",
+        "check-types": "tsc -b"
+    },
+    "dependencies": {
+        "@better-auth/core": "1.7.22",
+        "@better-auth/drizzle-adapter": "1.7.22",
+        "@better-auth/expo": "catalog:",
+        "@full-stack-template/db": "workspace:*",
+        "@polar-sh/better-auth": "catalog:",
+        "@polar-sh/sdk": "^1.1.0",
+        "better-auth": "catalog:",
+        "drizzle-orm": "catalog:",
+        "zod": "catalog:"
+    },
+    "devDependencies": {
+        "@full-stack-template/config": "workspace:*",
+        "typescript": "^6.0.3"
+    }
+}

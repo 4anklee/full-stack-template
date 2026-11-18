@@ -1,0 +1,48 @@
+{
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    "editor.defaultFormatter": "oxc.oxc-vscode",
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.oxc": "explicit"
+    },
+    "oxc.enable.oxlint": true,
+    "oxc.enable.oxfmt": true,
+    "oxc.fmt.disableNestedConfig": true,
+    "biome.enabled": false,
+    "eslint.enable": false,
+    "[javascript]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "[javascriptreact]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "[typescript]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "[json]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "[jsonc]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "[markdown]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    },
+    "[yaml]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "oxc.oxc-vscode"
+    }
+}
