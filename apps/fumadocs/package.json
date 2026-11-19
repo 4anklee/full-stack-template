@@ -8,7 +8,8 @@
         "build": "vp build",
         "start": "serve .output/public --config ../../serve.json",
         "preview": "vp preview",
-        "types:check": "tsc --noEmit",
+        "check-types": "tsc --noEmit",
+        "types:check": "bun run check-types",
         "lint": "vp lint"
     },
     "dependencies": {

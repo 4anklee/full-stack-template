@@ -1,4 +1,3 @@
-import type { AppRouterClient } from "@full-stack-template/api/routers/index";
 import { createORPCClient } from "@orpc/client";
 import { RPCLink } from "@orpc/client/fetch";
 import { createTanstackQueryUtils } from "@orpc/tanstack-query";
@@ -6,6 +5,7 @@ import { QueryCache, QueryClient } from "@tanstack/react-query";
 import { Platform } from "react-native";
 
 import { authClient } from "@/lib/auth-client";
+import type { AppRouterClient } from "@full-stack-template/api/routers/index";
 
 import { ENV } from "../src/env";
 

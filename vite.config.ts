@@ -60,7 +60,39 @@ export default defineConfig({
         ],
         singleQuote: false,
         semi: true,
+        sortImports: {
+            internalPattern: ["@/", "~/", "#", "@full-stack-template/"],
+        },
         sortPackageJson: true,
+        overrides: [
+            {
+                files: ["apps/web/**", "packages/ui/**"],
+                options: {
+                    sortTailwindcss: {
+                        stylesheet: "./packages/ui/src/styles/globals.css",
+                        functions: ["cn", "clsx", "cva", "tv"],
+                    },
+                },
+            },
+            {
+                files: ["apps/fumadocs/**"],
+                options: {
+                    sortTailwindcss: {
+                        stylesheet: "./apps/fumadocs/src/styles/app.css",
+                        functions: ["cn", "clsx", "cva", "tv"],
+                    },
+                },
+            },
+            {
+                files: ["apps/native/**"],
+                options: {
+                    sortTailwindcss: {
+                        stylesheet: "./apps/native/global.css",
+                        functions: ["cn", "clsx", "cva", "tv"],
+                    },
+                },
+            },
+        ],
     },
     staged: {
         "*.{js,ts,jsx,tsx,vue,svelte,json,jsonc,css,md}": "vp check --fix",

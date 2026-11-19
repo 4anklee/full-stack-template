@@ -1,9 +1,10 @@
 import { drizzleAdapter } from "@better-auth/drizzle-adapter/relations-v2";
 import { expo } from "@better-auth/expo";
-import type { Database } from "@full-stack-template/db";
-import * as schema from "@full-stack-template/db/schema/auth";
 import { polar, checkout, portal } from "@polar-sh/better-auth";
 import { betterAuth } from "better-auth";
+
+import type { Database } from "@full-stack-template/db";
+import * as schema from "@full-stack-template/db/schema/auth";
 
 import { createPolarClient } from "./lib/payments";
 

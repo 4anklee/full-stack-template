@@ -1,9 +1,9 @@
-import { Button } from "@full-stack-template/ui/components/button";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { authClient } from "@/lib/auth-client";
 import { orpc } from "@/utils/orpc";
+import { Button } from "@full-stack-template/ui/components/button";
 
 export const Route = createFileRoute("/_auth/dashboard")({
     component: RouteComponent,

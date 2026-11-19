@@ -73,44 +73,44 @@ export default function Home() {
 
     return (
         <Container className="p-6">
-            <View className="py-4 mb-6">
-                <Text className="text-4xl font-bold text-foreground mb-2">Full Stack Template</Text>
+            <View className="mb-6 py-4">
+                <Text className="mb-2 text-4xl font-bold text-foreground">Full Stack Template</Text>
             </View>
 
             {session?.user ? (
                 <Card variant="secondary" className="mb-6 p-4">
-                    <Text className="text-foreground text-base mb-2">
+                    <Text className="mb-2 text-base text-foreground">
                         Welcome, <Text className="font-medium">{session.user.name}</Text>
                     </Text>
-                    <Text className="text-muted text-sm mb-4">{session.user.email}</Text>
+                    <Text className="mb-4 text-sm text-muted">{session.user.email}</Text>
                     <Pressable
-                        className="bg-danger py-3 px-4 rounded-lg self-start active:opacity-70"
+                        className="self-start rounded-lg bg-danger px-4 py-3 active:opacity-70"
                         onPress={() => {
                             authClient.signOut();
                             queryClient.invalidateQueries();
                         }}
                     >
-                        <Text className="text-foreground font-medium">Sign Out</Text>
+                        <Text className="font-medium text-foreground">Sign Out</Text>
                     </Pressable>
                     <View className="mt-4 gap-3">
                         <Pressable
-                            className="bg-primary py-3 px-4 rounded-lg self-start active:opacity-70"
+                            className="bg-primary self-start rounded-lg px-4 py-3 active:opacity-70"
                             onPress={handlePolarCheckout}
                         >
-                            <Text className="text-foreground font-medium">Upgrade to Pro</Text>
+                            <Text className="font-medium text-foreground">Upgrade to Pro</Text>
                         </Pressable>
                         <Pressable
-                            className="border border-border py-3 px-4 rounded-lg self-start active:opacity-70"
+                            className="self-start rounded-lg border border-border px-4 py-3 active:opacity-70"
                             onPress={handlePolarPortal}
                         >
-                            <Text className="text-foreground font-medium">Manage Subscription</Text>
+                            <Text className="font-medium text-foreground">Manage Subscription</Text>
                         </Pressable>
                     </View>
                 </Card>
             ) : null}
 
             <Card variant="secondary" className="p-6">
-                <View className="flex-row items-center justify-between mb-4">
+                <View className="mb-4 flex-row items-center justify-between">
                     <Card.Title>System Status</Card.Title>
                     <Chip variant="secondary" color={isConnected ? "success" : "danger"} size="sm">
                         <Chip.Label>{isConnected ? "LIVE" : "OFFLINE"}</Chip.Label>
@@ -120,10 +120,10 @@ export default function Home() {
                 <Card className="p-4">
                     <View className="flex-row items-center">
                         <View
-                            className={`w-3 h-3 rounded-full mr-3 ${isConnected ? "bg-success" : "bg-muted"}`}
+                            className={`mr-3 h-3 w-3 rounded-full ${isConnected ? "bg-success" : "bg-muted"}`}
                         />
                         <View className="flex-1">
-                            <Text className="text-foreground font-medium mb-1">ORPC Backend</Text>
+                            <Text className="mb-1 font-medium text-foreground">ORPC Backend</Text>
                             <Card.Description>
                                 {isLoading
                                     ? "Checking connection..."

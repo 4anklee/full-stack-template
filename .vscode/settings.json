@@ -10,24 +10,45 @@
     },
     "oxc.enable.oxlint": true,
     "oxc.enable.oxfmt": true,
+    "oxc.fixKind": "safe_fix_or_suggestion",
     "oxc.fmt.disableNestedConfig": true,
     "biome.enabled": false,
     "eslint.enable": false,
     "[javascript]": {
         "editor.tabSize": 4,
-        "editor.defaultFormatter": "oxc.oxc-vscode"
+        "editor.defaultFormatter": "oxc.oxc-vscode",
+        "editor.codeActionsOnSave": {
+            "source.removeUnusedImports": "explicit",
+            "source.organizeImports": "never",
+            "source.sortImports": "never"
+        }
     },
     "[javascriptreact]": {
         "editor.tabSize": 4,
-        "editor.defaultFormatter": "oxc.oxc-vscode"
+        "editor.defaultFormatter": "oxc.oxc-vscode",
+        "editor.codeActionsOnSave": {
+            "source.removeUnusedImports": "explicit",
+            "source.organizeImports": "never",
+            "source.sortImports": "never"
+        }
     },
     "[typescript]": {
         "editor.tabSize": 4,
-        "editor.defaultFormatter": "oxc.oxc-vscode"
+        "editor.defaultFormatter": "oxc.oxc-vscode",
+        "editor.codeActionsOnSave": {
+            "source.removeUnusedImports": "explicit",
+            "source.organizeImports": "never",
+            "source.sortImports": "never"
+        }
     },
     "[typescriptreact]": {
         "editor.tabSize": 4,
-        "editor.defaultFormatter": "oxc.oxc-vscode"
+        "editor.defaultFormatter": "oxc.oxc-vscode",
+        "editor.codeActionsOnSave": {
+            "source.removeUnusedImports": "explicit",
+            "source.organizeImports": "never",
+            "source.sortImports": "never"
+        }
     },
     "[json]": {
         "editor.tabSize": 4,
