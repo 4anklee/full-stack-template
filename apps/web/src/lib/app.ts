@@ -1,5 +1,7 @@
+import project from "@repo/config/project.json";
+
 export const app = {
-    name: "Full Stack Template",
-    description: "A starting point for your next application.",
-    repositoryUrl: "https://github.com/4anklee/full-stack-template",
+    name: project.name,
+    description: project.description,
+    repositoryUrl: `https://github.com/${project.repository.owner}/${project.repository.name}`,
 };

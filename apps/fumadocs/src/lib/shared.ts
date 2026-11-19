@@ -1,13 +1,15 @@
 import { createGetUrl } from "fumadocs-core/source";
 
-export const appName = "Full Stack Template";
+import project from "@repo/config/project.json";
+
+export const appName = project.name;
 export const docsRoute = "/docs";
 export const docsImageRoute = "/og/docs";
 
 export const gitConfig = {
-    user: "4anklee",
-    repo: "full-stack-template",
-    branch: "main",
+    user: project.repository.owner,
+    repo: project.repository.name,
+    branch: project.repository.branch,
 };
 
 const getImageUrl = createGetUrl(docsImageRoute);

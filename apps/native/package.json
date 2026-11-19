@@ -17,11 +17,11 @@
         "@better-auth/expo": "catalog:",
         "@expo/metro-runtime": "~58.0.17",
         "@expo/vector-icons": "^15.0.2",
-        "@full-stack-template/api": "workspace:*",
         "@gorhom/bottom-sheet": "^5.2.14",
         "@orpc/client": "catalog:",
         "@orpc/tanstack-query": "catalog:",
         "@polar-sh/better-auth": "catalog:",
+        "@repo/api": "workspace:*",
         "@tanstack/react-form": "catalog:",
         "@tanstack/react-query": "catalog:",
         "@varlock/expo-integration": "1.2.2",
@@ -59,7 +59,7 @@
         "zod": "catalog:"
     },
     "devDependencies": {
-        "@full-stack-template/config": "workspace:*",
+        "@repo/config": "workspace:*",
         "@types/node": "catalog:",
         "@types/react": "~19.3.0",
         "babel-preset-expo": "~58.0.25",

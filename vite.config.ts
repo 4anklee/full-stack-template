@@ -63,7 +63,7 @@ export default defineConfig({
         singleQuote: false,
         semi: true,
         sortImports: {
-            internalPattern: ["@/", "~/", "#", "@full-stack-template/"],
+            internalPattern: ["@/", "~/", "#", "@repo/"],
         },
         sortPackageJson: true,
         overrides: [

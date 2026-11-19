@@ -41,6 +41,8 @@
     },
     "type": "module",
     "scripts": {
+        "test:template": "uv run --with copier==9.19.1 python -m unittest discover -s .copier -p test_template.py",
+        "test": "bun test --pass-with-no-tests",
         "dev": "mprocs",
         "build": "vp run -r build",
         "check-types": "vp run -r check-types",
@@ -51,10 +53,10 @@
         "dev:native": "vp run --filter native dev",
         "dev:web": "vp run --filter web dev",
         "dev:server": "vp run --filter server dev",
-        "db:push": "vp run --filter @full-stack-template/db db:push",
-        "db:studio": "vp run --filter @full-stack-template/db db:studio",
-        "db:generate": "vp run --filter @full-stack-template/db db:generate",
-        "db:migrate": "vp run --filter @full-stack-template/db db:migrate",
+        "db:push": "vp run --filter @repo/db db:push",
+        "db:studio": "vp run --filter @repo/db db:studio",
+        "db:generate": "vp run --filter @repo/db db:generate",
+        "db:migrate": "vp run --filter @repo/db db:migrate",
         "docker:build": "docker compose build",
         "docker:up": "docker compose up -d --build",
         "docker:down": "docker compose down",
@@ -67,7 +69,7 @@
         "zod": "catalog:"
     },
     "devDependencies": {
-        "@full-stack-template/config": "workspace:*",
+        "@repo/config": "workspace:*",
         "@types/bun": "catalog:",
         "lefthook": "^2.2.2",
         "mprocs": "0.9.6",

@@ -1,6 +1,6 @@
 import type { Context as HonoContext } from "hono";
 
-import type { Context as ApiContext } from "@full-stack-template/api/context";
+import type { Context as ApiContext } from "@repo/api/context";
 
 import { db } from "./services";
 import { auth } from "./services";

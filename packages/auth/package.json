@@ -1,5 +1,5 @@
 {
-    "name": "@full-stack-template/auth",
+    "name": "@repo/auth",
     "type": "module",
     "exports": {
         ".": "./src/index.ts",
@@ -13,15 +13,15 @@
         "@better-auth/core": "1.7.22",
         "@better-auth/drizzle-adapter": "1.7.22",
         "@better-auth/expo": "catalog:",
-        "@full-stack-template/db": "workspace:*",
         "@polar-sh/better-auth": "catalog:",
         "@polar-sh/sdk": "^1.1.0",
+        "@repo/config": "workspace:*",
+        "@repo/db": "workspace:*",
         "better-auth": "catalog:",
         "drizzle-orm": "catalog:",
         "zod": "catalog:"
     },
     "devDependencies": {
-        "@full-stack-template/config": "workspace:*",
         "typescript": "catalog:"
     }
 }

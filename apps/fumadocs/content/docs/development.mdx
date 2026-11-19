@@ -39,13 +39,20 @@ bun run check
 bun run build
 ```
 
-Pre-commit checks staged files. GitHub Actions checks formatting, linting, types, and builds on pull requests and pushes to `main`.
+Pre-commit checks staged files. GitHub Actions runs application tests and checks formatting, linting, types, and builds on pull requests and pushes to the default branch.
 
-## Customize the Template
+## Customize the Project
 
-- Update the web name, description, and repository link in `apps/web/src/lib/app.ts`.
-- Update the mobile display name in `apps/native/app.json` and the screen title in `apps/native/app/_layout.tsx`.
-- Update documentation branding and repository information in `apps/fumadocs/src/lib/shared.ts`.
+<!-- template:start -->
+
+`copier.yml` defines project questions, defaults, validation, and post-generation tasks. Run `bun run test:template` to test rendering and updates. GitHub’s **Use this template** flow invokes Copier automatically; wait for initialization to finish before cloning. Template tooling and setup workflows are excluded from generated projects.
+
+<!-- template:end -->
+
+- Shared names, repository information, and native identifiers live in `packages/config/project.json`.
+- Expo reads identity from that file through `apps/native/app.config.ts`. Keep other platform settings in `apps/native/app.json`.
+- Internal workspace imports use `@repo/*` and remain stable when the repository is renamed.
+- Keep `.copier-answers.yml` committed. Run `uvx --from copier==9.19.1 copier update --trust --defaults --vcs-ref=HEAD` from a clean Git working tree to pull template improvements, and use `--data` to change identity answers.
 - Compose web components from `@heroui/react` and mobile components from `heroui-native`.
 - Add your application screens while keeping shared API and database code in `packages`.
 

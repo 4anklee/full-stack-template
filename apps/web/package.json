@@ -10,7 +10,6 @@
         "env:generate": "varlock codegen"
     },
     "dependencies": {
-        "@full-stack-template/api": "workspace:*",
         "@heroui/react": "3.2.7",
         "@heroui/styles": "3.2.7",
         "@internationalized/date": "^3.12.4",
@@ -20,6 +19,8 @@
         "@polar-sh/better-auth": "catalog:",
         "@react-aria/ssr": "^3.10.1",
         "@react-aria/utils": "^3.34.1",
+        "@repo/api": "workspace:*",
+        "@repo/config": "workspace:*",
         "@tailwindcss/vite": "catalog:",
         "@tanstack/react-form": "catalog:",
         "@tanstack/react-query": "catalog:",
@@ -38,7 +39,6 @@
         "zod": "catalog:"
     },
     "devDependencies": {
-        "@full-stack-template/config": "workspace:*",
         "@tanstack/react-query-devtools": "^5.107.1",
         "@tanstack/react-router-devtools": "catalog:",
         "@testing-library/dom": "^10.4.2",

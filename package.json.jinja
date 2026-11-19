@@ -1,0 +1,5 @@
+{% set source %}{% include 'package.json' %}{% endset %}
+{% set package = source | from_json %}
+{% set _ = package.update({'name': project_slug}) %}
+{% set _ = package['scripts'].pop('test:template', none) %}
+{{ package | to_nice_json(indent=4, sort_keys=false) }}

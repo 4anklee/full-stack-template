@@ -6,6 +6,6 @@ export default defineConfig({
     outDir: "./dist",
     clean: true,
     deps: {
-        alwaysBundle: [/@full-stack-template\/.*/],
+        alwaysBundle: [/@repo\/.*/],
     },
 });

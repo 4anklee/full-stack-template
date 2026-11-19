@@ -1,0 +1,15 @@
+{
+    "name": "Full Stack Template",
+    "slug": "full-stack-template",
+    "description": "A starting point for your next application.",
+    "repository": {
+        "owner": "4anklee",
+        "name": "full-stack-template",
+        "branch": "main"
+    },
+    "mobile": {
+        "scheme": "full-stack-template",
+        "iosBundleIdentifier": "com.anonymous.full-stack-template",
+        "androidPackage": "com.anonymous.fullstacktemplate"
+    }
+}

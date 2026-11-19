@@ -1,5 +1,6 @@
 import "@/global.css";
 import { QueryClientProvider } from "@tanstack/react-query";
+import Constants from "expo-constants";
 import { Stack } from "expo-router";
 import { HeroUINativeProvider, useThemeColor } from "heroui-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -25,7 +26,7 @@ function StackLayout() {
                 headerRight: () => <ThemeToggle />,
             }}
         >
-            <Stack.Screen name="index" options={{ title: "Full Stack Template" }} />
+            <Stack.Screen name="index" options={{ title: Constants.expoConfig?.name ?? "Home" }} />
         </Stack>
     );
 }

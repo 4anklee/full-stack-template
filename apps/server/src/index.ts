@@ -7,7 +7,8 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 
-import { appRouter } from "@full-stack-template/api/routers/index";
+import { appRouter } from "@repo/api/routers/index";
+import project from "@repo/config/project.json";
 
 import { createContext } from "./context";
 import { ENV } from "./env.server";
@@ -28,7 +29,7 @@ app.use(
 
 app.on(["POST", "GET"], "/api/auth/*", async (c) => auth.handler(c.req.raw));
 
-const nativeAppUrl = "full-stack-template://";
+const nativeAppUrl = `${project.mobile.scheme}://`;
 const allowedNativeProtocols = new Set(["exp:", new URL(nativeAppUrl).protocol]);
 
 app.get("/polar/success", (c) => {

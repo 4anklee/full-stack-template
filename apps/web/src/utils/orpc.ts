@@ -4,7 +4,7 @@ import { RPCLink } from "@orpc/client/fetch";
 import { createTanstackQueryUtils } from "@orpc/tanstack-query";
 import { QueryCache, QueryClient } from "@tanstack/react-query";
 
-import type { AppRouterClient } from "@full-stack-template/api/routers/index";
+import type { AppRouterClient } from "@repo/api/routers/index";
 
 import { ENV } from "../env";
 

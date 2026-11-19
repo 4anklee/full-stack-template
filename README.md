@@ -1,4 +1,4 @@
-# full-stack-template
+# Full Stack Template
 
 A TypeScript monorepo with React, TanStack Start, Expo, Hono, and oRPC, sharing authentication, database access, and API types across applications.
 
@@ -20,7 +20,25 @@ A TypeScript monorepo with React, TanStack Start, Expo, Hono, and oRPC, sharing 
 
 ## Getting Started
 
-First, install the dependencies:
+<!-- template:start -->
+
+Generate a project with [Copier](https://copier.readthedocs.io/) using [uv](https://docs.astral.sh/uv/):
+
+```bash
+uvx --from copier==9.19.1 copier copy --trust --vcs-ref=HEAD gh:4anklee/full-stack-template my-app
+```
+
+Copier prompts for the GitHub owner and repository, display name, slug, description, native URL scheme, and mobile application ID. Its tasks install Bun dependencies, refresh `bun.lock`, and format generated files. `--trust` permits those tasks. For noninteractive generation, add `--defaults --data repository_owner=acme --data repository_name=my-app` and any other answers you want to override. Use `--pretend` to preview generation or `--skip-tasks` to render without installing dependencies.
+
+GitHub's **Use this template** button also works. Wait for **Initialize repository** in the new repository's Actions tab to finish before cloning. It runs Copier against the upstream template's current `HEAD`, supplies the new repository's owner, name, description, and default branch, validates the generated project, and commits the result. It skips this template and forks, uses the built-in `GITHUB_TOKEN`, and removes itself afterward. Actions must be enabled and repository rules must allow its commit. A private upstream template also requires credentials that can read it; use local Copier generation when those are unavailable.
+
+Generated projects contain application code and `.copier-answers.yml`; Copier configuration, Jinja source files, template tests, and setup workflows are excluded. Keep the answers file committed for updates. Defaults derive mobile IDs from the GitHub owner and repository; review them before publishing an app.
+
+To work on the template itself, run `bun install` and `bun run test:template`. The plain files keep it runnable; neighboring `.jinja` files render only identity-dependent values and reuse the plain files where possible. Release Git tags when you want consumers to update to a stable version.
+
+<!-- template:end -->
+
+Clone the repository and install dependencies:
 
 ```bash
 bun install
@@ -65,13 +83,31 @@ import { Button, Input, Label, TextField } from "@heroui/react";
 - The documentation app uses Fumadocs' standard UI package and owns its styles in `apps/fumadocs/src/styles/app.css`.
 - Official HeroUI skills live in `.agents/skills/heroui-react` and `.agents/skills/heroui-native`. They include component documentation tools and platform-specific implementation guidance.
 
-## Template Identity
+## Project Identity
 
-- Web name, description, and repository link: `apps/web/src/lib/app.ts`
-- Mobile display name: `apps/native/app.json`; screen title: `apps/native/app/_layout.tsx`
-- Documentation name and repository links: `apps/fumadocs/src/lib/shared.ts`
+`packages/config/project.json` is the shared source for:
+
+- Display name and description used by the web app, documentation, and authentication
+- GitHub owner, repository, and documentation source branch
+- Native URL scheme, iOS bundle identifier, and Android package
+
+The web and docs import it from `@repo/config/project.json`. Expo's `apps/native/app.config.ts` combines it with platform settings in `app.json`; the native screen reads the resolved Expo name. The API callback and Better Auth trusted origin read the same scheme.
+
+Use Copier updates to change identity answers and keep metadata, the root package name, Docker project name, and docs in sync. You can configure different iOS and Android identifiers in the metadata file. Changes to native schemes or app identifiers require a new native build.
+
+Internal packages use stable `@repo/api`, `@repo/auth`, `@repo/db`, and `@repo/config` names, so repository renaming never requires changing source imports.
 
 The apps start with a minimal home and account flow. Authentication, subscriptions, and shared backend packages are ready to extend with your own features.
+
+## Update from the Template
+
+After generating a project, initialize Git if needed and commit your application files, including `.copier-answers.yml`. With a clean working tree, run:
+
+```bash
+uvx --from copier==9.19.1 copier update --trust --defaults --vcs-ref=HEAD
+```
+
+This uses the recorded template source and previous answers. Omit `--vcs-ref=HEAD` to use the latest release tag instead. To change an identity answer, add an option such as `--data project_name="My New App"`. Do not edit `.copier-answers.yml` manually. Review the diff, resolve any merge conflicts, and run `bun run check` and `bun run build` before committing the update. Copier is a development tool; application builds and runtime only need the existing Bun/Node toolchain.
 
 ## Environment Configuration
 
@@ -101,8 +137,14 @@ Environment variables are read from each app's `.env` file (baked into web build
 - Run checks: `bun run check`
 - Workspace type checks run first to generate the web route tree and shared package declarations before type-aware linting. This lets checks run from a fresh checkout without a running dev server.
 - Pre-commit runs `bun vp staged`, which applies Vite+ formatting and lint fixes to staged files.
-- GitHub Actions runs `bun run check` and `bun run build` as separate jobs on pull requests, pushes to `main`, and manual runs. CI reuses the pre-commit Vite+ configuration, checks the entire repository without applying fixes, and checks workspace TypeScript types.
+- GitHub Actions runs tests, then runs `bun run check` and `bun run build` as separate jobs on pull requests, pushes to the default branch, and manual runs. CI reuses the pre-commit Vite+ configuration, checks the entire repository without applying fixes, and checks workspace TypeScript types.
 - CI uses the Bun version from `package.json`, installs with `--frozen-lockfile`, and provides a local placeholder for `VITE_SERVER_URL`. No repository secrets or running database are required.
+
+<!-- template:start -->
+
+The Template workflow tests Copier rendering, validation, exclusions, and updates. The initialization workflow checks and builds the generated project before committing because pushes made with `GITHUB_TOKEN` do not start another CI run.
+
+<!-- template:end -->
 
 ## Project Structure
 
@@ -116,11 +158,19 @@ full-stack-template/
 ├── packages/
 │   ├── api/         # API layer / business logic
 │   ├── auth/        # Authentication configuration & logic
-│   └── db/          # Database schema & queries
+│   ├── db/          # Database schema & queries
+│   └── config/      # Shared project metadata and TypeScript configuration
 ```
 
 ## Available Scripts
 
+<!-- template:start -->
+
+- `bun run test:template`: Test Copier rendering and updates with isolated Git repositories (requires uv)
+
+<!-- template:end -->
+
+- `bun run test`: Run application tests; succeeds with no tests until you add them
 - `bun run dev`: Start all applications in development mode
 - `bun run build`: Build all applications
 - `bun run dev:web`: Start only the web application

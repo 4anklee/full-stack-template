@@ -8,7 +8,7 @@
         "zod": "catalog:",
       },
       "devDependencies": {
-        "@full-stack-template/config": "workspace:*",
+        "@repo/config": "workspace:*",
         "@types/bun": "catalog:",
         "lefthook": "^2.2.2",
         "mprocs": "0.9.6",
@@ -22,6 +22,7 @@
     "apps/fumadocs": {
       "name": "fumadocs",
       "dependencies": {
+        "@repo/config": "workspace:*",
         "@tanstack/react-router": "catalog:",
         "@tanstack/react-router-devtools": "catalog:",
         "@tanstack/react-start": "catalog:",
@@ -57,11 +58,11 @@
         "@better-auth/expo": "catalog:",
         "@expo/metro-runtime": "~58.0.17",
         "@expo/vector-icons": "^15.0.2",
-        "@full-stack-template/api": "workspace:*",
         "@gorhom/bottom-sheet": "^5.2.14",
         "@orpc/client": "catalog:",
         "@orpc/tanstack-query": "catalog:",
         "@polar-sh/better-auth": "catalog:",
+        "@repo/api": "workspace:*",
         "@tanstack/react-form": "catalog:",
         "@tanstack/react-query": "catalog:",
         "@varlock/expo-integration": "1.2.2",
@@ -99,7 +100,7 @@
         "zod": "catalog:",
       },
       "devDependencies": {
-        "@full-stack-template/config": "workspace:*",
+        "@repo/config": "workspace:*",
         "@types/node": "catalog:",
         "@types/react": "~19.3.0",
         "babel-preset-expo": "~58.0.25",
@@ -109,19 +110,19 @@
     "apps/server": {
       "name": "server",
       "dependencies": {
-        "@full-stack-template/api": "workspace:*",
-        "@full-stack-template/auth": "workspace:*",
-        "@full-stack-template/db": "workspace:*",
         "@orpc/openapi": "catalog:",
         "@orpc/server": "catalog:",
         "@orpc/zod": "catalog:",
+        "@repo/api": "workspace:*",
+        "@repo/auth": "workspace:*",
+        "@repo/config": "workspace:*",
+        "@repo/db": "workspace:*",
         "better-auth": "catalog:",
         "hono": "^4.13.18",
         "varlock": "catalog:",
         "zod": "catalog:",
       },
       "devDependencies": {
-        "@full-stack-template/config": "workspace:*",
         "@types/bun": "catalog:",
         "tsdown": "^0.23.7",
         "typescript": "catalog:",
@@ -130,7 +131,6 @@
     "apps/web": {
       "name": "web",
       "dependencies": {
-        "@full-stack-template/api": "workspace:*",
         "@heroui/react": "3.2.7",
         "@heroui/styles": "3.2.7",
         "@internationalized/date": "^3.12.4",
@@ -140,6 +140,8 @@
         "@polar-sh/better-auth": "catalog:",
         "@react-aria/ssr": "^3.10.1",
         "@react-aria/utils": "^3.34.1",
+        "@repo/api": "workspace:*",
+        "@repo/config": "workspace:*",
         "@tailwindcss/vite": "catalog:",
         "@tanstack/react-form": "catalog:",
         "@tanstack/react-query": "catalog:",
@@ -158,7 +160,6 @@
         "zod": "catalog:",
       },
       "devDependencies": {
-        "@full-stack-template/config": "workspace:*",
         "@tanstack/react-query-devtools": "^5.107.1",
         "@tanstack/react-router-devtools": "catalog:",
         "@testing-library/dom": "^10.4.2",
@@ -173,52 +174,52 @@
       },
     },
     "packages/api": {
-      "name": "@full-stack-template/api",
+      "name": "@repo/api",
       "dependencies": {
-        "@full-stack-template/auth": "workspace:*",
-        "@full-stack-template/db": "workspace:*",
         "@orpc/client": "catalog:",
         "@orpc/openapi": "catalog:",
         "@orpc/server": "catalog:",
         "@orpc/zod": "catalog:",
+        "@repo/auth": "workspace:*",
+        "@repo/db": "workspace:*",
         "zod": "catalog:",
       },
       "devDependencies": {
-        "@full-stack-template/config": "workspace:*",
+        "@repo/config": "workspace:*",
         "typescript": "catalog:",
       },
     },
     "packages/auth": {
-      "name": "@full-stack-template/auth",
+      "name": "@repo/auth",
       "dependencies": {
         "@better-auth/core": "1.7.22",
         "@better-auth/drizzle-adapter": "1.7.22",
         "@better-auth/expo": "catalog:",
-        "@full-stack-template/db": "workspace:*",
         "@polar-sh/better-auth": "catalog:",
         "@polar-sh/sdk": "^1.1.0",
+        "@repo/config": "workspace:*",
+        "@repo/db": "workspace:*",
         "better-auth": "catalog:",
         "drizzle-orm": "catalog:",
         "zod": "catalog:",
       },
       "devDependencies": {
-        "@full-stack-template/config": "workspace:*",
         "typescript": "catalog:",
       },
     },
     "packages/config": {
-      "name": "@full-stack-template/config",
+      "name": "@repo/config",
       "version": "0.0.0",
     },
     "packages/db": {
-      "name": "@full-stack-template/db",
+      "name": "@repo/db",
       "dependencies": {
         "@neondatabase/serverless": "^1.2.0",
         "drizzle-orm": "catalog:",
         "zod": "catalog:",
       },
       "devDependencies": {
-        "@full-stack-template/config": "workspace:*",
+        "@repo/config": "workspace:*",
         "drizzle-kit": "1.0.0-rc.5",
         "typescript": "catalog:",
         "varlock": "catalog:",
@@ -580,14 +581,6 @@
 
     "@floating-ui/utils": ["@floating-ui/utils@0.2.12", "", {}, "sha512-HpCo8tmWzLVad5s2d19EhAz5zqrrQ6s69qd6moPMQvkOuSwDT1YgRfWSVuc4ennqrgv3OHppiOGMQ7oC13yIww=="],
 
-    "@full-stack-template/api": ["@full-stack-template/api@workspace:packages/api"],
-
-    "@full-stack-template/auth": ["@full-stack-template/auth@workspace:packages/auth"],
-
-    "@full-stack-template/config": ["@full-stack-template/config@workspace:packages/config"],
-
-    "@full-stack-template/db": ["@full-stack-template/db@workspace:packages/db"],
-
     "@fuma-translate/react": ["@fuma-translate/react@1.0.2", "", { "peerDependencies": { "@types/react": "*", "react": "^19.2.0", "react-dom": "^19.2.0" }, "optionalPeers": ["@types/react"] }, "sha512-uOiOtBx3nRXR8Nu1GzBf1tApgF1FErDBTHxRIAQeyQdyOoZbrNRN6H4kDCWObY4qyGeGbHydG0DHzgeUgFDMIw=="],
 
     "@fumadocs/tailwind": ["@fumadocs/tailwind@0.1.5", "", { "peerDependencies": { "tailwindcss": "^4.0.0" }, "optionalPeers": ["tailwindcss"] }, "sha512-ohzmuLTfNNRvP6B/Xx31lWJ58xu40NcmI+6mc/jivYeOoofnmdxBKu5gCErTgOE/mUqyVv4GvYeqd9FhoLHphg=="],
@@ -907,6 +900,14 @@
     "@react-types/color": ["@react-types/color@3.2.0", "", { "dependencies": { "@react-aria/color": "^3.2.0", "@react-spectrum/color": "^3.2.0", "@react-stately/color": "^3.10.0" }, "peerDependencies": { "@react-spectrum/provider": "^3.0.0", "react": "^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1", "react-dom": "^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1" } }, "sha512-beV3vz80nzZ1EuYUM7296Kyi3AHcMrbQw0qub/9yzHWVTKKc5sy/e4dCMKcWL/ArkeAyc7jDOiui190RQ4l0Fw=="],
 
     "@react-types/shared": ["@react-types/shared@3.37.0", "", { "peerDependencies": { "react": "^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1" } }, "sha512-VNlZuifu4tHdxWPfHvoMfKsHA9kVTCGkduv5vKVTdinm8wHFJNhyVB5RzIMiRFj0q3RKoCbP68u2zaoBSiFueg=="],
+
+    "@repo/api": ["@repo/api@workspace:packages/api"],
+
+    "@repo/auth": ["@repo/auth@workspace:packages/auth"],
+
+    "@repo/config": ["@repo/config@workspace:packages/config"],
+
+    "@repo/db": ["@repo/db@workspace:packages/db"],
 
     "@rolldown/binding-android-arm-eabi": ["@rolldown/binding-android-arm-eabi@1.3.2", "", { "os": "android", "cpu": "arm" }, "sha512-kqR2xcygEx3WwDY69LsKeyf7SVmx4yzMtKZRknyaHieVJdRvvnAM97L0Gq6tUFc9T2YXcW/Ghij2+Um6He0LTw=="],
 

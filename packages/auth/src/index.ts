@@ -3,8 +3,9 @@ import { expo } from "@better-auth/expo";
 import { polar, checkout, portal } from "@polar-sh/better-auth";
 import { betterAuth } from "better-auth";
 
-import type { Database } from "@full-stack-template/db";
-import * as schema from "@full-stack-template/db/schema/auth";
+import project from "@repo/config/project.json";
+import type { Database } from "@repo/db";
+import * as schema from "@repo/db/schema/auth";
 
 import { createPolarClient } from "./lib/payments";
 
@@ -22,6 +23,7 @@ export function createAuth(
     desktopOrigins: readonly string[] = [],
 ) {
     return betterAuth({
+        appName: project.name,
         database: drizzleAdapter(database, {
             provider: "pg",
             schema,
@@ -29,7 +31,7 @@ export function createAuth(
         trustedOrigins: [
             env.CORS_ORIGIN,
             ...desktopOrigins,
-            "full-stack-template://",
+            `${project.mobile.scheme}://`,
             "exp://",
             "http://localhost:8081",
         ],

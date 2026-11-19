@@ -1,0 +1,2 @@
+{% set source %}{% include 'docker-compose.yml' %}{% endset %}
+{{- source | regex_replace('(?m)^name: full-stack-template$', 'name: ' ~ project_slug) -}}

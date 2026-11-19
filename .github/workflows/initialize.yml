@@ -1,0 +1,87 @@
+name: Initialize repository
+
+on:
+    push:
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+concurrency:
+    group: initialize-repository
+    cancel-in-progress: false
+
+jobs:
+    initialize:
+        if: >-
+            github.repository != '4anklee/full-stack-template' &&
+            !github.event.repository.fork &&
+            github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        runs-on: ubuntu-latest
+        timeout-minutes: 20
+        permissions:
+            contents: write
+        env:
+            COPIER_TEMPLATE_URL: https://github.com/4anklee/full-stack-template.git
+            GITHUB_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+            GITHUB_REPOSITORY_DESCRIPTION: ${{ github.event.repository.description }}
+            VITE_SERVER_URL: http://localhost:3000
+        steps:
+            - name: Check out default branch
+              uses: actions/checkout@v7
+              with:
+                  ref: ${{ github.event.repository.default_branch }}
+                  persist-credentials: true
+
+            - name: Check whether initialization is needed
+              id: init
+              run: |
+                  if [ -f copier.yml ] && [ ! -f .copier-answers.yml ]; then
+                    echo 'needed=true' >> "$GITHUB_OUTPUT"
+                  fi
+
+            - name: Set up Node.js
+              if: steps.init.outputs.needed == 'true'
+              uses: actions/setup-node@v7
+              with:
+                  node-version: 26
+                  package-manager-cache: false
+
+            - name: Set up Bun
+              if: steps.init.outputs.needed == 'true'
+              uses: oven-sh/setup-bun@v2
+              with:
+                  bun-version-file: package.json
+
+            - name: Set up uv
+              if: steps.init.outputs.needed == 'true'
+              uses: astral-sh/setup-uv@v10
+
+            - name: Generate project with Copier
+              if: steps.init.outputs.needed == 'true'
+              run: |
+                  uvx --from copier==9.19.1 copier copy --trust --defaults --vcs-ref=HEAD \
+                    --data "repository_owner=$GITHUB_REPOSITORY_OWNER" \
+                    --data "repository_name=${GITHUB_REPOSITORY#*/}" \
+                    --data "repository_branch=$GITHUB_DEFAULT_BRANCH" \
+                    --data "project_description=$GITHUB_REPOSITORY_DESCRIPTION" \
+                    "$COPIER_TEMPLATE_URL" "$RUNNER_TEMP/generated"
+                  rsync -a --delete --exclude=.git --exclude=node_modules "$RUNNER_TEMP/generated/" ./
+
+            # Pushes made with GITHUB_TOKEN do not trigger CI, so validate here.
+            - name: Test, check, and build generated project
+              if: steps.init.outputs.needed == 'true'
+              run: |
+                  bun install --frozen-lockfile
+                  bun run test
+                  bun run check
+                  bun run build
+
+            - name: Commit generated project
+              if: steps.init.outputs.needed == 'true'
+              run: |
+                  git config user.name 'github-actions[bot]'
+                  git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+                  git add --all
+                  git -c core.hooksPath=/dev/null commit -m "Initialize project with Copier"
+                  git push origin "HEAD:$GITHUB_DEFAULT_BRANCH"

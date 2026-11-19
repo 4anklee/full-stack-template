@@ -8,4 +8,4 @@ From the repository root:
 bun --cwd apps/fumadocs run dev
 ```
 
-Open `http://localhost:4000`. Edit pages in `content/docs` and update the site name and repository links in `src/lib/shared.ts`.
+Open `http://localhost:4000`. Edit pages in `content/docs` and update the shared project identity in `../../packages/config/project.json`.

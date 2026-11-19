@@ -1,5 +1,5 @@
-import type { Session } from "@full-stack-template/auth";
-import type { Database } from "@full-stack-template/db";
+import type { Session } from "@repo/auth";
+import type { Database } from "@repo/db";
 
 export type Context = {
     session: Session | null;

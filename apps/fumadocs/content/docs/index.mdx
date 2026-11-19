@@ -7,13 +7,23 @@ Full Stack Template is a starting point for building web and mobile applications
 
 ## Install Dependencies
 
-Clone the repository and install dependencies from the project root:
+<!-- template:start -->
+
+Generate a project with `uvx --from copier==9.19.1 copier copy --trust --vcs-ref=HEAD gh:4anklee/full-stack-template my-app`. Copier collects the app identity, installs dependencies, and excludes template tooling from the generated project. Alternatively, use GitHub’s **Use this template** button and wait for the **Initialize repository** workflow to finish before cloning. It runs Copier, validates the generated project, and commits the result.
+
+<!-- template:end -->
+
+Clone the repository and install dependencies:
 
 ```bash
 git clone https://github.com/4anklee/full-stack-template.git
 cd full-stack-template
 bun install
 ```
+
+The shared identity lives in `packages/config/project.json`. Use Copier updates with `--data` to change identity answers and keep package names, Docker, and docs in sync. Review mobile identifiers before publishing an app. Internal packages use `@repo/*`, so imports stay the same after renaming.
+
+Commit `.copier-answers.yml` with your application. With a clean Git working tree, run `uvx --from copier==9.19.1 copier update --trust --defaults --vcs-ref=HEAD` to pull improvements from the template. Do not edit the answers file manually; review changes and resolve conflicts before committing.
 
 Use the Bun version specified in the root `package.json`.
 

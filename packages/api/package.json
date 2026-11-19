@@ -1,5 +1,5 @@
 {
-    "name": "@full-stack-template/api",
+    "name": "@repo/api",
     "type": "module",
     "exports": {
         ".": "./src/index.ts",
@@ -10,16 +10,16 @@
         "check-types": "tsc -b"
     },
     "dependencies": {
-        "@full-stack-template/auth": "workspace:*",
-        "@full-stack-template/db": "workspace:*",
         "@orpc/client": "catalog:",
         "@orpc/openapi": "catalog:",
         "@orpc/server": "catalog:",
         "@orpc/zod": "catalog:",
+        "@repo/auth": "workspace:*",
+        "@repo/db": "workspace:*",
         "zod": "catalog:"
     },
     "devDependencies": {
-        "@full-stack-template/config": "workspace:*",
+        "@repo/config": "workspace:*",
         "typescript": "catalog:"
     }
 }

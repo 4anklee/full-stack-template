@@ -1,0 +1,9 @@
+{% macro render(path) -%}
+{% set source %}{% include path %}{% endset %}
+{{- source
+    | regex_replace('(?s)<!-- template:start -->.*?<!-- template:end -->\n*', '')
+    | replace('https://github.com/4anklee/full-stack-template', 'https://github.com/' ~ repository_owner ~ '/' ~ repository_name)
+    | replace('Full Stack Template', project_name)
+    | replace('cd full-stack-template', 'cd ' ~ project_slug)
+    | replace('full-stack-template/\n', project_slug ~ '/\n') -}}
+{%- endmacro %}

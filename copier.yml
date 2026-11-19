@@ -1,0 +1,118 @@
+_min_copier_version: "9.19.1"
+_preserve_symlinks: true
+_exclude:
+    - .git
+    - .DS_Store
+    - .copier
+    - copier.yml
+    - .github/workflows/initialize.yml
+    - .github/workflows/template.yml
+    - "**/node_modules"
+    - "**/__pycache__"
+    - "**/.env*"
+    - "!**/.env.schema"
+    - "!**/.env.example"
+    - "**/dist"
+    - "**/.output"
+    - "**/.source"
+    - "**/.tanstack"
+    - "**/.expo"
+    - "**/*.tsbuildinfo"
+    - apps/web/src/routeTree.gen.ts
+    - "**/src/env.ts"
+
+repository_owner:
+    type: str
+    help: GitHub user or organization that will own the project
+    validator: >-
+        {% if not repository_owner | regex_search('^[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$') %}
+        Enter a GitHub username or organization.
+        {% endif %}
+
+repository_name:
+    type: str
+    help: GitHub repository name
+    default: "{{ _folder_name }}"
+    validator: >-
+        {% if not repository_name | regex_search('^[a-zA-Z0-9._-]+$') or repository_name in ['.', '..'] %}
+        Use letters, numbers, periods, underscores, or hyphens.
+        {% endif %}
+
+repository_branch:
+    type: str
+    default: main
+    help: Default Git branch
+    validator: >-
+        {% if not repository_branch | regex_search('^[a-zA-Z0-9][a-zA-Z0-9._/-]*$') or '..' in repository_branch or '//' in repository_branch or repository_branch.endswith(('/', '.', '.lock')) %}
+        Enter a valid default branch name.
+        {% endif %}
+
+project_slug:
+    type: str
+    help: Lowercase package, Expo, and Docker name
+    default: >-
+        {% set slug = repository_name | lower | regex_replace('[^a-z0-9]+', '-') | trim('-') %}
+        {{- slug if slug and slug[0].isalpha() else 'app-' ~ (slug or 'project') }}
+    validator: >-
+        {% if not project_slug | regex_search('^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$') %}
+        Start with a lowercase letter; use lowercase letters, numbers, and single hyphens.
+        {% endif %}
+
+project_name:
+    type: str
+    help: Display name for web, native, authentication, and docs
+    default: "{{ project_slug | replace('-', ' ') | title }}"
+    validator: >-
+        {% if not project_name | trim or project_name | regex_search('[\x00-\x1f\x7f]') %}
+        Enter a nonempty name without control characters.
+        {% endif %}
+
+project_description:
+    type: str
+    default: A starting point for your next application.
+    validator: >-
+        {% if project_description | regex_search('[\x00-\x1f\x7f]') %}
+        Enter a description without control characters.
+        {% endif %}
+
+native_scheme:
+    type: str
+    default: "{{ project_slug }}"
+    help: Custom native URL scheme
+    validator: >-
+        {% if not native_scheme | regex_search('^[a-z][a-z0-9+.-]*$') or native_scheme in ['http', 'https', 'exp', 'exps', 'file', 'javascript', 'data'] %}
+        Enter a custom lowercase URL scheme, such as my-app.
+        {% endif %}
+
+app_id:
+    type: str
+    help: iOS bundle identifier and Android application ID
+    default: >-
+        {%- set owner = repository_owner | lower | regex_replace('[^a-z0-9]', '') -%}
+        {%- set name = repository_name | lower | regex_replace('[^a-z0-9]', '') -%}
+        com.github.{{ owner if owner and owner[0].isalpha() else 'app' ~ owner }}.{{ name if name and name[0].isalpha() else 'app' ~ name }}
+    validator: >-
+        {% if not app_id | regex_search('^[a-zA-Z][a-zA-Z0-9]*(?:[.][a-zA-Z][a-zA-Z0-9]*)+$') %}
+        Use dot-separated segments starting with a letter, containing letters or numbers.
+        {% endif %}
+
+_tasks:
+    - [bun, install]
+    - [
+          bun,
+          vp,
+          fmt,
+          --write,
+          packages/config/project.json,
+          package.json,
+          docker-compose.yml,
+          README.md,
+          apps/fumadocs/README.md,
+          apps/fumadocs/content/docs/index.mdx,
+          apps/fumadocs/content/docs/development.mdx,
+          .copier-answers.yml,
+      ]
+
+_message_after_copy: |
+    {{ project_name }} is ready. Configure your app .env files, then run bun run check.
+    Commit the generated files, including .copier-answers.yml, to enable future Copier updates.

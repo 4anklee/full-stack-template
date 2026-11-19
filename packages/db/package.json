@@ -1,5 +1,5 @@
 {
-    "name": "@full-stack-template/db",
+    "name": "@repo/db",
     "type": "module",
     "exports": {
         ".": "./src/index.ts",
@@ -20,7 +20,7 @@
         "zod": "catalog:"
     },
     "devDependencies": {
-        "@full-stack-template/config": "workspace:*",
+        "@repo/config": "workspace:*",
         "drizzle-kit": "1.0.0-rc.5",
         "typescript": "catalog:",
         "varlock": "catalog:"

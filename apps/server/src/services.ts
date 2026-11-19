@@ -1,5 +1,5 @@
-import { createAuth } from "@full-stack-template/auth";
-import { createDb } from "@full-stack-template/db";
+import { createAuth } from "@repo/auth";
+import { createDb } from "@repo/db";
 
 import { ENV } from "./env.server";
 

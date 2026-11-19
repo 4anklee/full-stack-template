@@ -1,0 +1,21 @@
+name: Template
+
+on:
+    push:
+    pull_request:
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+jobs:
+    template:
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+        steps:
+            - uses: actions/checkout@v7
+              with:
+                  persist-credentials: false
+            - uses: astral-sh/setup-uv@v10
+            - name: Test Copier rendering and updates
+              run: uv run --with copier==9.19.1 python -m unittest discover -s .copier -p test_template.py

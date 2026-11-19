@@ -1,15 +1,11 @@
 {
     "expo": {
-        "name": "Full Stack Template",
-        "slug": "full-stack-template",
         "version": "1.0.0",
         "orientation": "portrait",
         "icon": "./assets/images/icon.png",
-        "scheme": "full-stack-template",
         "userInterfaceStyle": "automatic",
         "ios": {
-            "supportsTablet": true,
-            "bundleIdentifier": "com.anonymous.full-stack-template"
+            "supportsTablet": true
         },
         "android": {
             "adaptiveIcon": {
@@ -18,8 +14,7 @@
                 "backgroundImage": "./assets/images/android-icon-background.png",
                 "monochromeImage": "./assets/images/android-icon-monochrome.png"
             },
-            "predictiveBackGestureEnabled": false,
-            "package": "com.anonymous.fullstacktemplate"
+            "predictiveBackGestureEnabled": false
         },
         "web": {
             "bundler": "metro",

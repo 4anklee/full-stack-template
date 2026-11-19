@@ -1,0 +1,15 @@
+{
+    "name": {{ project_name | to_json }},
+    "slug": {{ project_slug | to_json }},
+    "description": {{ project_description | to_json }},
+    "repository": {
+        "owner": {{ repository_owner | to_json }},
+        "name": {{ repository_name | to_json }},
+        "branch": {{ repository_branch | to_json }}
+    },
+    "mobile": {
+        "scheme": {{ native_scheme | to_json }},
+        "iosBundleIdentifier": {{ app_id | to_json }},
+        "androidPackage": {{ app_id | to_json }}
+    }
+}

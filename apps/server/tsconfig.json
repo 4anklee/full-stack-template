@@ -1,5 +1,5 @@
 {
-    "extends": "@full-stack-template/config/tsconfig.base.json",
+    "extends": "@repo/config/tsconfig.base.json",
     "references": [{ "path": "../../packages/api" }],
     "compilerOptions": {
         "noEmit": true,

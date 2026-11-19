@@ -12,19 +12,19 @@
         "auth:generate": "varlock run -- bun x auth@latest generate --config src/services.ts --output ../../packages/db/src/schema/auth.ts --yes"
     },
     "dependencies": {
-        "@full-stack-template/api": "workspace:*",
-        "@full-stack-template/auth": "workspace:*",
-        "@full-stack-template/db": "workspace:*",
         "@orpc/openapi": "catalog:",
         "@orpc/server": "catalog:",
         "@orpc/zod": "catalog:",
+        "@repo/api": "workspace:*",
+        "@repo/auth": "workspace:*",
+        "@repo/config": "workspace:*",
+        "@repo/db": "workspace:*",
         "better-auth": "catalog:",
         "hono": "^4.13.18",
         "varlock": "catalog:",
         "zod": "catalog:"
     },
     "devDependencies": {
-        "@full-stack-template/config": "workspace:*",
         "@types/bun": "catalog:",
         "tsdown": "^0.23.7",
         "typescript": "catalog:"
