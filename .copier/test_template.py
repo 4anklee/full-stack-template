@@ -104,7 +104,8 @@ class TemplateTests(unittest.TestCase):
             "apps/fumadocs/content/docs/development.mdx",
         ]:
             content = (self.destination / path).read_text()
-            self.assertNotIn("<!-- template:", content)
+            self.assertNotIn("template:start", content)
+            self.assertNotIn("template:end", content)
             self.assertNotIn("bun run init", content)
             self.assertNotIn("Full Stack Template", content)
         self.assertTrue(
