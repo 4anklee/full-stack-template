@@ -1,6 +1,6 @@
 # full-stack-template
 
-A TypeScript monorepo with React, TanStack Start, Expo, Hono, and oRPC, sharing authentication, database access, and UI components across applications.
+A TypeScript monorepo with React, TanStack Start, Expo, Hono, and oRPC, sharing authentication, database access, and API types across applications.
 
 ## Features
 
@@ -9,7 +9,7 @@ A TypeScript monorepo with React, TanStack Start, Expo, Hono, and oRPC, sharing 
 - **React Native** - Build mobile apps using React
 - **Expo** - Tools for React Native development
 - **TailwindCSS** - Utility-first CSS for rapid UI development
-- **Shared UI package** - shadcn/ui primitives live in `packages/ui`
+- **HeroUI** - HeroUI React components on web and HeroUI Native on mobile
 - **Hono** - Lightweight, performant server framework
 - **oRPC** - End-to-end type-safe APIs with OpenAPI integration
 - **Bun** - Runtime environment
@@ -51,29 +51,18 @@ The API is running at [http://localhost:3000](http://localhost:3000).
 
 ## UI Customization
 
-React web apps in this stack share shadcn/ui primitives through `packages/ui`.
-
-- Change design tokens and global styles in `packages/ui/src/styles/globals.css`
-- Update shared primitives in `packages/ui/src/components/*`
-- Adjust shadcn aliases or style config in `packages/ui/components.json` and `apps/web/components.json`
-
-### Add more shared components
-
-Run this from the project root to add more primitives to the shared UI package:
-
-```bash
-npx shadcn@latest add accordion dialog popover sheet table -c packages/ui
-```
-
-Import shared components like this:
+The web app imports HeroUI v3 components directly from `@heroui/react`:
 
 ```tsx
-import { Button } from "@full-stack-template/ui/components/button";
+import { Button, Input, Label, TextField } from "@heroui/react";
 ```
 
-### Add app-specific blocks
-
-If you want to add app-specific blocks instead of shared primitives, run the shadcn CLI from `apps/web`.
+- Customize web global styles and HeroUI theme tokens in `apps/web/src/index.css`. Tailwind CSS is imported before `@heroui/styles`.
+- Compose app-specific components in `apps/web/src/components`; there is no shared UI wrapper package.
+- Use HeroUI's `TextField`, `Label`, `Input`, and `FieldError` for accessible forms, and `Toast.Provider` with `toast` for notifications.
+- The web app uses a dark theme via the root element's `class` and `data-theme` attributes.
+- The native app uses `heroui-native`, with styles in `apps/native/global.css`.
+- The documentation app uses Fumadocs' standard UI package and owns its styles in `apps/fumadocs/src/styles/app.css`.
 
 ## Environment Configuration
 
@@ -112,9 +101,9 @@ full-stack-template/
 ├── apps/
 │   ├── web/         # Frontend application (React + TanStack Start)
 │   ├── native/      # Mobile application (React Native, Expo)
-│   └── server/      # Backend API (Hono, ORPC)
+│   ├── server/      # Backend API (Hono, ORPC)
+│   └── fumadocs/    # Documentation (Fumadocs)
 ├── packages/
-│   ├── ui/          # Shared shadcn/ui components and styles
 │   ├── api/         # API layer / business logic
 │   ├── auth/        # Authentication configuration & logic
 │   └── db/          # Database schema & queries

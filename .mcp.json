@@ -4,9 +4,9 @@
             "command": "npx",
             "args": ["-y", "@upstash/context7-mcp"]
         },
-        "shadcn": {
+        "heroui-react": {
             "command": "npx",
-            "args": ["-y", "shadcn@latest", "mcp"]
+            "args": ["-y", "@heroui/react-mcp@latest"]
         },
         "neon": {
             "type": "http",

@@ -2,9 +2,9 @@
 command = "npx"
 args = ["-y", "@upstash/context7-mcp"]
 
-[mcp_servers.shadcn]
+[mcp_servers.heroui-react]
 command = "npx"
-args = ["-y", "shadcn@latest", "mcp"]
+args = ["-y", "@heroui/react-mcp@latest"]
 
 [mcp_servers.neon]
 url = "https://mcp.neon.tech/mcp"

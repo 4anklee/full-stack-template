@@ -1,9 +1,9 @@
+import { Button } from "@heroui/react";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { authClient } from "@/lib/auth-client";
 import { orpc } from "@/utils/orpc";
-import { Button } from "@full-stack-template/ui/components/button";
 
 export const Route = createFileRoute("/_auth/dashboard")({
     component: RouteComponent,
@@ -22,7 +22,7 @@ function RouteComponent() {
             <p>Plan: {hasProSubscription ? "Pro" : "Free"}</p>
             {hasProSubscription ? (
                 <Button
-                    onClick={async function handlePortal() {
+                    onPress={async function handlePortal() {
                         await authClient.customer.portal();
                     }}
                 >
@@ -30,7 +30,7 @@ function RouteComponent() {
                 </Button>
             ) : (
                 <Button
-                    onClick={async function handleUpgrade() {
+                    onPress={async function handleUpgrade() {
                         await authClient.checkout({ slug: "pro" });
                     }}
                 >

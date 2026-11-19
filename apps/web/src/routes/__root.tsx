@@ -1,10 +1,10 @@
+import { Toast } from "@heroui/react";
 import type { QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { HeadContent, Outlet, Scripts, createRootRouteWithContext } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 import type { orpc } from "@/utils/orpc";
-import { Toaster } from "@full-stack-template/ui/components/sonner";
 
 import Header from "../components/header";
 
@@ -41,7 +41,7 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
 
 function RootDocument() {
     return (
-        <html lang="en" className="dark">
+        <html lang="en" className="dark" data-theme="dark">
             <head>
                 <HeadContent />
             </head>
@@ -50,7 +50,7 @@ function RootDocument() {
                     <Header />
                     <Outlet />
                 </div>
-                <Toaster richColors />
+                <Toast.Provider />
                 <TanStackRouterDevtools position="bottom-left" />
                 <ReactQueryDevtools position="bottom" buttonPosition="bottom-right" />
                 <Scripts />

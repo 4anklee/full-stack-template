@@ -1,62 +1,55 @@
+import { Button, Dropdown, Header, Label, Skeleton, buttonVariants } from "@heroui/react";
 import { Link, useNavigate } from "@tanstack/react-router";
 
 import { authClient } from "@/lib/auth-client";
-import { Button } from "@full-stack-template/ui/components/button";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuGroup,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@full-stack-template/ui/components/dropdown-menu";
-import { Skeleton } from "@full-stack-template/ui/components/skeleton";
 
 export default function UserMenu() {
     const navigate = useNavigate();
     const { data: session, isPending } = authClient.useSession();
 
     if (isPending) {
-        return <Skeleton className="h-9 w-24" />;
+        return <Skeleton className="h-9 w-24 rounded-lg" />;
     }
 
     if (!session) {
         return (
-            <Link to="/login">
-                <Button variant="outline">Sign In</Button>
+            <Link to="/login" className={buttonVariants({ variant: "outline" })}>
+                Sign In
             </Link>
         );
     }
 
     return (
-        <DropdownMenu>
-            <DropdownMenuTrigger render={<Button variant="outline" />}>
+        <Dropdown>
+            <Button variant="ghost" aria-label={`Account menu for ${session.user.name}`}>
                 {session.user.name}
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="bg-card">
-                <DropdownMenuGroup>
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>{session.user.email}</DropdownMenuItem>
-                    <DropdownMenuItem
-                        variant="destructive"
-                        onClick={() => {
-                            authClient.signOut({
-                                fetchOptions: {
-                                    onSuccess: () => {
-                                        navigate({
-                                            to: "/",
-                                        });
+            </Button>
+            <Dropdown.Popover>
+                <Dropdown.Menu aria-label="My Account">
+                    <Dropdown.Section>
+                        <Header>
+                            <p>My Account</p>
+                            <p className="text-sm font-normal text-muted">{session.user.email}</p>
+                        </Header>
+                        <Dropdown.Item
+                            id="sign-out"
+                            textValue="Sign Out"
+                            variant="danger"
+                            onAction={() => {
+                                authClient.signOut({
+                                    fetchOptions: {
+                                        onSuccess: () => {
+                                            navigate({ to: "/" });
+                                        },
                                     },
-                                },
-                            });
-                        }}
-                    >
-                        Sign Out
-                    </DropdownMenuItem>
-                </DropdownMenuGroup>
-            </DropdownMenuContent>
-        </DropdownMenu>
+                                });
+                            }}
+                        >
+                            <Label>Sign Out</Label>
+                        </Dropdown.Item>
+                    </Dropdown.Section>
+                </Dropdown.Menu>
+            </Dropdown.Popover>
+        </Dropdown>
     );
 }

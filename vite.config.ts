@@ -66,10 +66,10 @@ export default defineConfig({
         sortPackageJson: true,
         overrides: [
             {
-                files: ["apps/web/**", "packages/ui/**"],
+                files: ["apps/web/**"],
                 options: {
                     sortTailwindcss: {
-                        stylesheet: "./packages/ui/src/styles/globals.css",
+                        stylesheet: "./apps/web/src/index.css",
                         functions: ["cn", "clsx", "cva", "tv"],
                     },
                 },

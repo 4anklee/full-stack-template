@@ -1,1 +1,8 @@
-@import "@full-stack-template/ui/globals.css";
+@import "tailwindcss";
+@import "@heroui/styles";
+
+@layer base {
+    body {
+        @apply bg-background font-sans text-foreground;
+    }
+}

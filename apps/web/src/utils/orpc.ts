@@ -1,8 +1,8 @@
+import { toast } from "@heroui/react";
 import { createORPCClient } from "@orpc/client";
 import { RPCLink } from "@orpc/client/fetch";
 import { createTanstackQueryUtils } from "@orpc/tanstack-query";
 import { QueryCache, QueryClient } from "@tanstack/react-query";
-import { toast } from "sonner";
 
 import type { AppRouterClient } from "@full-stack-template/api/routers/index";
 
@@ -12,10 +12,10 @@ export function createQueryClient() {
     return new QueryClient({
         queryCache: new QueryCache({
             onError: (error, query) => {
-                toast.error(`Error: ${error.message}`, {
-                    action: {
-                        label: "retry",
-                        onClick: () => {
+                toast.danger(`Error: ${error.message}`, {
+                    actionProps: {
+                        children: "Retry",
+                        onPress: () => {
                             query.invalidate();
                         },
                     },

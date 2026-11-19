@@ -20,7 +20,7 @@
         "cn": "catalog:",
         "fumadocs-core": "16.19.4",
         "fumadocs-mdx": "15.6.3",
-        "fumadocs-ui": "npm:@fumadocs/base-ui@16.19.4",
+        "fumadocs-ui": "16.19.4",
         "lucide-react": "catalog:",
         "react": "catalog:",
         "react-dom": "catalog:",
