@@ -101,6 +101,9 @@ Environment variables are read from each app's `.env` file (baked into web build
 ## Git Hooks and Formatting
 
 - Run checks: `bun run check`
+- Pre-commit runs `bun vp staged`, which applies Vite+ formatting and lint fixes to staged files.
+- GitHub Actions runs `bun run check` and `bun run build` as separate jobs on pull requests, pushes to `main`, and manual runs. CI reuses the pre-commit Vite+ configuration, checks the entire repository without applying fixes, and checks workspace TypeScript types.
+- CI uses the Bun version from `package.json`, installs with `--frozen-lockfile`, and provides a local placeholder for `VITE_SERVER_URL`. No repository secrets or running database are required.
 
 ## Project Structure
 
