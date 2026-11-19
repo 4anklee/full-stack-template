@@ -3,6 +3,7 @@ import { RootProvider } from "fumadocs-ui/provider/tanstack";
 import * as React from "react";
 
 import SearchDialog from "@/components/search";
+import { appName } from "@/lib/shared";
 
 import appCss from "@/styles/app.css?url";
 
@@ -17,7 +18,7 @@ export const Route = createRootRoute({
                 content: "width=device-width, initial-scale=1",
             },
             {
-                title: "Fumadocs on TanStack Start",
+                title: `${appName} Docs`,
             },
         ],
         links: [{ rel: "stylesheet", href: appCss }],

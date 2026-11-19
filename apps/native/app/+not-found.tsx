@@ -11,7 +11,6 @@ export default function NotFoundScreen() {
             <Container>
                 <View className="flex-1 items-center justify-center p-4">
                     <Surface variant="secondary" className="max-w-sm items-center rounded-lg p-6">
-                        <Text className="mb-3 text-4xl">🤔</Text>
                         <Text className="mb-1 text-lg font-medium text-foreground">
                             Page Not Found
                         </Text>

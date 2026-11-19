@@ -1,31 +1,40 @@
 ---
-title: Hello World
-description: Your favourite docs framework.
-icon: Rocket
+title: Getting Started
+description: Set up your local development environment.
 ---
 
-Hey there! Fumadocs is the docs framework that also works on Tanstack Start!
+Full Stack Template is a starting point for building web and mobile applications with a shared API, authentication, and database.
 
-## Heading
+## Install Dependencies
 
-Hello World!
+Clone the repository and install dependencies from the project root:
 
-<Cards>
-    <Card title="Learn more about Tanstack Start" href="https://tanstack.com/start" />
-    <Card title="Learn more about Fumadocs" href="https://fumadocs.dev" />
-</Cards>
-
-### CodeBlock
-
-```ts
-console.log("Hello World");
+```bash
+git clone https://github.com/4anklee/full-stack-template.git
+cd full-stack-template
+bun install
 ```
 
-#### Table
+Use the Bun version specified in the root `package.json`.
 
-| Head                            | Description                         |
-| ------------------------------- | ----------------------------------- |
-| `hello`                         | Hello World                         |
-| very **important**              | Hey                                 |
-| _Surprisingly_                  | Fumadocs                            |
-| very long text that looks weird | hello world hello world hello world |
+## Configure Your Environment
+
+Create local `.env` files in `apps/web`, `apps/server`, and `apps/native`, using each app's `.env.schema` as a reference.
+
+Configure the server's database connection, authentication secret, allowed origin, and billing credentials. Set the web and native server URLs to your API address. Environment files stay out of version control.
+
+Apply the database schema once the connection is configured:
+
+```bash
+bun run db:push
+```
+
+## Start Development
+
+```bash
+bun run dev
+```
+
+The web app runs at `http://localhost:3001`, the API at `http://localhost:3000`, and these docs at `http://localhost:4000`. Open the native app through its Expo development server.
+
+Continue to [Development](/docs/development) for the project structure and common commands.

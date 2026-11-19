@@ -1,14 +1,11 @@
-# fumadocs
+# Full Stack Template Docs
 
-This is a Tanstack Start application generated with
-[Create Fumadocs](https://github.com/fuma-nama/fumadocs).
+Project documentation for [Full Stack Template](https://github.com/4anklee/full-stack-template), built with Fumadocs.
 
-Run development server:
+From the repository root:
 
 ```bash
-npm run dev
-# or
-pnpm dev
-# or
-yarn dev
+bun --cwd apps/fumadocs run dev
 ```
+
+Open `http://localhost:4000`. Edit pages in `content/docs` and update the site name and repository links in `src/lib/shared.ts`.

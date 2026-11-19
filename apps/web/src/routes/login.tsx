@@ -8,7 +8,7 @@ export const Route = createFileRoute("/login")({
 });
 
 function RouteComponent() {
-    const [mode, setMode] = useState<"sign-in" | "sign-up">("sign-up");
+    const [mode, setMode] = useState<"sign-in" | "sign-up">("sign-in");
 
     return (
         <AuthForm

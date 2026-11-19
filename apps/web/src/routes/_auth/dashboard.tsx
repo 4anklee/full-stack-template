@@ -1,42 +1,64 @@
-import { Button } from "@heroui/react";
-import { useQuery } from "@tanstack/react-query";
+import { Button, Card } from "@heroui/react";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { authClient } from "@/lib/auth-client";
-import { orpc } from "@/utils/orpc";
 
 export const Route = createFileRoute("/_auth/dashboard")({
-    component: RouteComponent,
+    component: DashboardPage,
 });
 
-function RouteComponent() {
+function DashboardPage() {
     const { session, hasProSubscription } = Route.useRouteContext();
-
-    const privateData = useQuery(orpc.privateData.queryOptions());
+    const user = session.data?.user;
 
     return (
-        <div>
-            <h1>Dashboard</h1>
-            <p>Welcome {session.data?.user.name}</p>
-            <p>API: {privateData.data?.message}</p>
-            <p>Plan: {hasProSubscription ? "Pro" : "Free"}</p>
-            {hasProSubscription ? (
-                <Button
-                    onPress={async function handlePortal() {
-                        await authClient.customer.portal();
-                    }}
-                >
-                    Manage Subscription
-                </Button>
-            ) : (
-                <Button
-                    onPress={async function handleUpgrade() {
-                        await authClient.checkout({ slug: "pro" });
-                    }}
-                >
-                    Upgrade to Pro
-                </Button>
-            )}
-        </div>
+        <main className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-6 py-10">
+            <h1 className="text-3xl font-semibold tracking-tight">Dashboard</h1>
+            <Card>
+                <Card.Header>
+                    <Card.Title>Your Account</Card.Title>
+                </Card.Header>
+                <Card.Content>
+                    <dl className="grid gap-4 sm:grid-cols-2">
+                        <div>
+                            <dt className="text-sm text-muted">Name</dt>
+                            <dd>{user?.name}</dd>
+                        </div>
+                        <div>
+                            <dt className="text-sm text-muted">Email</dt>
+                            <dd className="break-all">{user?.email}</dd>
+                        </div>
+                    </dl>
+                </Card.Content>
+            </Card>
+            <Card>
+                <Card.Header>
+                    <Card.Title>Subscription</Card.Title>
+                    <Card.Description>
+                        You’re on the {hasProSubscription ? "Pro" : "Free"} plan.
+                    </Card.Description>
+                </Card.Header>
+                <Card.Footer>
+                    {hasProSubscription ? (
+                        <Button
+                            variant="secondary"
+                            onPress={async () => {
+                                await authClient.customer.portal();
+                            }}
+                        >
+                            Manage Subscription
+                        </Button>
+                    ) : (
+                        <Button
+                            onPress={async () => {
+                                await authClient.checkout({ slug: "pro" });
+                            }}
+                        >
+                            Upgrade to Pro
+                        </Button>
+                    )}
+                </Card.Footer>
+            </Card>
+        </main>
     );
 }

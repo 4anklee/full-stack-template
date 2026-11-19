@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { HeadContent, Outlet, Scripts, createRootRouteWithContext } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
+import { app } from "@/lib/app";
 import type { orpc } from "@/utils/orpc";
 
 import Header from "../components/header";
@@ -25,7 +26,11 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
                 content: "width=device-width, initial-scale=1",
             },
             {
-                title: "My App",
+                title: app.name,
+            },
+            {
+                name: "description",
+                content: app.description,
             },
         ],
         links: [
@@ -46,13 +51,17 @@ function RootDocument() {
                 <HeadContent />
             </head>
             <body>
-                <div className="grid h-svh grid-rows-[auto_1fr]">
+                <div className="grid min-h-svh grid-rows-[auto_1fr]">
                     <Header />
                     <Outlet />
                 </div>
                 <Toast.Provider />
-                <TanStackRouterDevtools position="bottom-left" />
-                <ReactQueryDevtools position="bottom" buttonPosition="bottom-right" />
+                {import.meta.env.DEV ? (
+                    <>
+                        <TanStackRouterDevtools position="bottom-left" />
+                        <ReactQueryDevtools position="bottom" buttonPosition="bottom-right" />
+                    </>
+                ) : null}
                 <Scripts />
             </body>
         </html>

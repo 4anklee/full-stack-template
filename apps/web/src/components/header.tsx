@@ -1,29 +1,23 @@
 import { Separator } from "@heroui/react";
 import { Link } from "@tanstack/react-router";
 
+import { app } from "@/lib/app";
+
 import UserMenu from "./user-menu";
 
 export default function Header() {
-    const links = [
-        { to: "/", label: "Home" },
-        { to: "/dashboard", label: "Dashboard" },
-    ] as const;
-
     return (
         <header>
-            <div className="flex flex-row items-center justify-between px-2 py-1">
-                <nav className="flex gap-4 text-lg">
-                    {links.map(({ to, label }) => {
-                        return (
-                            <Link key={to} to={to}>
-                                {label}
-                            </Link>
-                        );
-                    })}
-                </nav>
-                <div className="flex items-center gap-2">
+            <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-6 py-3">
+                <Link to="/" className="font-semibold">
+                    {app.name}
+                </Link>
+                <nav aria-label="Main navigation" className="flex items-center gap-4">
+                    <Link to="/dashboard" className="text-sm">
+                        Dashboard
+                    </Link>
                     <UserMenu />
-                </div>
+                </nav>
             </div>
             <Separator />
         </header>

@@ -7,13 +7,12 @@ import { authClient } from "@/lib/auth-client";
 
 import Loader from "./loader";
 
-export default function AuthForm({
-    mode,
-    onSwitchMode,
-}: {
+type AuthFormProps = {
     mode: "sign-in" | "sign-up";
     onSwitchMode: () => void;
-}) {
+};
+
+export default function AuthForm({ mode, onSwitchMode }: AuthFormProps) {
     const navigate = useNavigate();
     const { isPending } = authClient.useSession();
     const isSignUp = mode === "sign-up";

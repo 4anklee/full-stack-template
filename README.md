@@ -63,6 +63,15 @@ import { Button, Input, Label, TextField } from "@heroui/react";
 - The web app uses a dark theme via the root element's `class` and `data-theme` attributes.
 - The native app uses `heroui-native`, with styles in `apps/native/global.css`.
 - The documentation app uses Fumadocs' standard UI package and owns its styles in `apps/fumadocs/src/styles/app.css`.
+- Official HeroUI skills live in `.agents/skills/heroui-react` and `.agents/skills/heroui-native`. They include component documentation tools and platform-specific implementation guidance.
+
+## Template Identity
+
+- Web name, description, and repository link: `apps/web/src/lib/app.ts`
+- Mobile display name: `apps/native/app.json`; screen title: `apps/native/app/_layout.tsx`
+- Documentation name and repository links: `apps/fumadocs/src/lib/shared.ts`
+
+The apps start with a minimal home and account flow. Authentication, subscriptions, and shared backend packages are ready to extend with your own features.
 
 ## Environment Configuration
 
@@ -124,7 +133,7 @@ full-stack-template/
 - `bun run check`: Run Vite+ format/lint checks and workspace TypeScript checks
 - `bun run lint`: Run Vite+ lint checks
 - `bun run format`: Run Vite+ formatting
-- `bun run staged`: Run Vite+ checks against staged files
+- `bun run staged`: Apply formatting and lint fixes to staged source files, and formatting fixes to staged JSON, CSS, Markdown/MDX, YAML, and HTML files
 - `bun run docker:build`: Build the Docker Compose images
 - `bun run docker:up`: Build and start the Docker Compose stack
 - `bun run docker:logs`: Tail logs from the Docker Compose stack

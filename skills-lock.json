@@ -78,6 +78,13 @@
             "skillPath": "skills/heroui-native/SKILL.md",
             "computedHash": "f1769079a8b741a65bcc2a0b052e2d26c3fc5959b43df0a39cdaacffff59558d"
         },
+        "heroui-react": {
+            "source": "heroui-inc/heroui",
+            "commit": "08d4f13ce74b4cec13d5b5452f458891950b3ebc",
+            "sourceType": "github",
+            "skillPath": "skills/heroui-react/SKILL.md",
+            "computedHash": "30701672e3efefe0e1fbeaadd118010d18b697db674d87ac24103e0a470064a9"
+        },
         "hono": {
             "source": "honojs/skills",
             "commit": "e54ce51f6effaeb574ebd2629e89e086e14a2db3",

@@ -1,19 +1,26 @@
-import { createFileRoute, useSearch } from "@tanstack/react-router";
+import { Card, buttonVariants } from "@heroui/react";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/success")({
     component: SuccessPage,
-    validateSearch: (search) => ({
-        checkout_id: search.checkout_id as string,
-    }),
 });
 
 function SuccessPage() {
-    const { checkout_id } = useSearch({ from: "/success" });
-
     return (
-        <div className="container mx-auto px-4 py-8">
-            <h1>Payment Successful!</h1>
-            {checkout_id && <p>Checkout ID: {checkout_id}</p>}
-        </div>
+        <main className="mx-auto flex w-full max-w-xl items-center px-6 py-10">
+            <Card className="w-full">
+                <Card.Header>
+                    <Card.Title>Payment Successful</Card.Title>
+                    <Card.Description>
+                        Return to your dashboard to manage your account and subscription.
+                    </Card.Description>
+                </Card.Header>
+                <Card.Footer>
+                    <Link to="/dashboard" className={buttonVariants()}>
+                        Open Dashboard
+                    </Link>
+                </Card.Footer>
+            </Card>
+        </main>
     );
 }

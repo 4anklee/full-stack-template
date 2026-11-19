@@ -1,0 +1,52 @@
+---
+title: Development
+description: Work with the applications and shared packages.
+---
+
+## Project Structure
+
+| Directory         | Purpose                                |
+| ----------------- | -------------------------------------- |
+| `apps/web`        | Web application with HeroUI React      |
+| `apps/native`     | Mobile application with HeroUI Native  |
+| `apps/server`     | API server                             |
+| `apps/fumadocs`   | Project documentation                  |
+| `packages/api`    | Shared API procedures and types        |
+| `packages/auth`   | Authentication and billing integration |
+| `packages/db`     | Database schema and queries            |
+| `packages/config` | Shared TypeScript configuration        |
+
+## Run an Application
+
+Run these commands from the project root:
+
+```bash
+bun run dev:web
+bun run dev:server
+bun run dev:native
+```
+
+Run only the documentation app:
+
+```bash
+bun --cwd apps/fumadocs run dev
+```
+
+## Check Your Changes
+
+```bash
+bun run check
+bun run build
+```
+
+Pre-commit checks staged files. GitHub Actions checks formatting, linting, types, and builds on pull requests and pushes to `main`.
+
+## Customize the Template
+
+- Update the web name, description, and repository link in `apps/web/src/lib/app.ts`.
+- Update the mobile display name in `apps/native/app.json` and the screen title in `apps/native/app/_layout.tsx`.
+- Update documentation branding and repository information in `apps/fumadocs/src/lib/shared.ts`.
+- Compose web components from `@heroui/react` and mobile components from `heroui-native`.
+- Add your application screens while keeping shared API and database code in `packages`.
+
+The web dashboard and native account screen include authentication and subscription actions. Extend those flows with your application's features.

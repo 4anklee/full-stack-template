@@ -1,59 +1,34 @@
-import { Card, Chip } from "@heroui/react";
-import { useQuery } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
+import { buttonVariants } from "@heroui/react";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
-import { orpc } from "@/utils/orpc";
+import { app } from "@/lib/app";
 
 export const Route = createFileRoute("/")({
-    component: HomeComponent,
+    component: HomePage,
 });
 
-const TITLE_TEXT = `
- ██████╗ ███████╗████████╗████████╗███████╗██████╗
- ██╔══██╗██╔════╝╚══██╔══╝╚══██╔══╝██╔════╝██╔══██╗
- ██████╔╝█████╗     ██║      ██║   █████╗  ██████╔╝
- ██╔══██╗██╔══╝     ██║      ██║   ██╔══╝  ██╔══██╗
- ██████╔╝███████╗   ██║      ██║   ███████╗██║  ██║
- ╚═════╝ ╚══════╝   ╚═╝      ╚═╝   ╚══════╝╚═╝  ╚═╝
-
- ████████╗    ███████╗████████╗ █████╗  ██████╗██╗  ██╗
- ╚══██╔══╝    ██╔════╝╚══██╔══╝██╔══██╗██╔════╝██║ ██╔╝
-    ██║       ███████╗   ██║   ███████║██║     █████╔╝
-    ██║       ╚════██║   ██║   ██╔══██║██║     ██╔═██╗
-    ██║       ███████║   ██║   ██║  ██║╚██████╗██║  ██╗
-    ╚═╝       ╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
- `;
-
-function HomeComponent() {
-    const healthCheck = useQuery(orpc.healthCheck.queryOptions());
-
+function HomePage() {
     return (
-        <div className="container mx-auto max-w-3xl px-4 py-2">
-            <pre className="overflow-x-auto font-mono text-sm">{TITLE_TEXT}</pre>
-            <Card>
-                <Card.Header>
-                    <Card.Title>API Status</Card.Title>
-                </Card.Header>
-                <Card.Content>
-                    <Chip
-                        color={
-                            healthCheck.isPending
-                                ? "default"
-                                : healthCheck.data
-                                  ? "success"
-                                  : "danger"
-                        }
-                        variant="soft"
-                        role="status"
+        <main className="mx-auto flex w-full max-w-5xl items-center px-6 py-16">
+            <div className="flex max-w-xl flex-col gap-6">
+                <div className="flex flex-col gap-3">
+                    <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+                        {app.name}
+                    </h1>
+                    <p className="text-lg text-muted">{app.description}</p>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                    <Link to="/dashboard" className={buttonVariants()}>
+                        Open Dashboard
+                    </Link>
+                    <a
+                        href={app.repositoryUrl}
+                        className={buttonVariants({ variant: "secondary" })}
                     >
-                        {healthCheck.isPending
-                            ? "Checking..."
-                            : healthCheck.data
-                              ? "Connected"
-                              : "Disconnected"}
-                    </Chip>
-                </Card.Content>
-            </Card>
-        </div>
+                        View Source
+                    </a>
+                </div>
+            </div>
+        </main>
     );
 }

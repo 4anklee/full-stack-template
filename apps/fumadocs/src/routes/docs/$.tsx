@@ -21,7 +21,7 @@ import { docs, source } from "@/lib/source";
 export const Route = createFileRoute("/docs/$")({
     component: Page,
     loader: async ({ params }) => {
-        const slugs = params._splat?.split("/") ?? [];
+        const slugs = (params._splat?.split("/") ?? []).filter(Boolean);
         const data = await loader({ data: slugs });
         await docs.getPage(data.path)?.preload();
         return data;
@@ -63,7 +63,7 @@ function Content({ path, markdownUrl }: { path: string; markdownUrl: string }) {
                 <MarkdownCopyButton markdownUrl={markdownUrl} />
                 <ViewOptionsPopover
                     markdownUrl={markdownUrl}
-                    githubUrl={`https://github.com/${gitConfig.user}/${gitConfig.repo}/blob/${gitConfig.branch}/content/docs/${encodeURI(path)}`}
+                    githubUrl={`https://github.com/${gitConfig.user}/${gitConfig.repo}/blob/${gitConfig.branch}/apps/fumadocs/content/docs/${encodeURI(path)}`}
                 />
             </div>
             <DocsBody>
