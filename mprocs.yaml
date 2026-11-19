@@ -1,0 +1,17 @@
+procs:
+    web:
+        cmd: ["bun", "--no-orphans", "run", "dev"]
+        cwd: <CONFIG_DIR>/apps/web
+        stop: SIGINT
+    server:
+        cmd: ["bun", "--no-orphans", "run", "dev"]
+        cwd: <CONFIG_DIR>/apps/server
+        stop: SIGINT
+    native:
+        cmd: ["bun", "--no-orphans", "run", "dev"]
+        cwd: <CONFIG_DIR>/apps/native
+        stop: SIGINT
+    fumadocs:
+        cmd: ["bun", "--no-orphans", "run", "dev"]
+        cwd: <CONFIG_DIR>/apps/fumadocs
+        stop: SIGINT
