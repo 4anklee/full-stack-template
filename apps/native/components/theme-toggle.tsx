@@ -17,9 +17,9 @@ export function ThemeToggle() {
             size="sm"
             isIconOnly
             accessibilityLabel={`Switch to ${isLight ? "dark" : "light"} theme`}
-            onPress={() => {
+            onPress={async () => {
                 if (Platform.OS === "ios") {
-                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                 }
                 Uniwind.setTheme(isLight ? "dark" : "light");
             }}

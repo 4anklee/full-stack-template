@@ -35,11 +35,11 @@ export default function UserMenu() {
                             id="sign-out"
                             textValue="Sign Out"
                             variant="danger"
-                            onAction={() => {
-                                authClient.signOut({
+                            onAction={async () => {
+                                await authClient.signOut({
                                     fetchOptions: {
-                                        onSuccess: () => {
-                                            navigate({ to: "/" });
+                                        onSuccess: async () => {
+                                            await navigate({ to: "/" });
                                         },
                                     },
                                 });

@@ -9,6 +9,8 @@ export default defineConfig({
         ignorePatterns: [
             "node_modules/**",
             "**/node_modules/**",
+            ".agents/skills/**",
+            ".claude/skills/**",
             "apps/web/dist/**",
             "apps/web/.vinxi/**",
             "apps/web/.tanstack/**",
@@ -25,15 +27,15 @@ export default defineConfig({
             "packages/auth/dist/**",
         ],
         options: {
-            typeAware: false,
-            typeCheck: false,
+            typeAware: true,
+            typeCheck: true,
         },
         settings: {
             react: {
                 version: "19.3.1",
             },
             tailwindcss: {
-                callees: ["clsx", "cva", "cn"],
+                callees: ["cn"],
             },
         },
     },
@@ -70,7 +72,7 @@ export default defineConfig({
                 options: {
                     sortTailwindcss: {
                         stylesheet: "./apps/web/src/index.css",
-                        functions: ["cn", "clsx", "cva", "tv"],
+                        functions: ["cn"],
                     },
                 },
             },
@@ -79,7 +81,7 @@ export default defineConfig({
                 options: {
                     sortTailwindcss: {
                         stylesheet: "./apps/fumadocs/src/styles/app.css",
-                        functions: ["cn", "clsx", "cva", "tv"],
+                        functions: ["cn"],
                     },
                 },
             },
@@ -88,14 +90,17 @@ export default defineConfig({
                 options: {
                     sortTailwindcss: {
                         stylesheet: "./apps/native/global.css",
-                        functions: ["cn", "clsx", "cva", "tv"],
+                        functions: ["cn"],
                     },
                 },
             },
         ],
     },
     staged: {
-        "*.{js,jsx,mjs,cjs,ts,tsx,mts,cts,vue,svelte}": ["vp fmt --write", "vp lint --fix"],
+        "*.{js,jsx,mjs,cjs,ts,tsx,mts,cts,vue,svelte}": [
+            "vp fmt --write",
+            "vp lint --fix --no-error-on-unmatched-pattern",
+        ],
         "*.{json,jsonc,css,md,mdx,yaml,yml,html}": "vp fmt --write",
     },
 });
