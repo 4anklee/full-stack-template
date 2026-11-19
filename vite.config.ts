@@ -2,6 +2,10 @@ import { defineConfig } from "vite-plus";
 
 export default defineConfig({
     lint: {
+        plugins: ["unicorn", "typescript", "oxc", "react", "import"],
+        env: {
+            builtin: true,
+        },
         ignorePatterns: [
             "node_modules/**",
             "**/node_modules/**",
@@ -32,15 +36,6 @@ export default defineConfig({
                 callees: ["clsx", "cva", "cn"],
             },
         },
-        overrides: [
-            {
-                files: ["apps/fumadocs/**"],
-                plugins: ["typescript", "react", "import"],
-                env: {
-                    builtin: true,
-                },
-            },
-        ],
     },
     fmt: {
         tabWidth: 4,
